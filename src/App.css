@@ -23,10 +23,18 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5rem;
+  gap: 3rem;
+}
+.card-separator {
+  margin: 0;
+  width: 40%;
+  background-color: #e5e5e56b;
+  height: 4px;
+  border: none;
+  border-radius: 30px;
 }
 .card {
-  width: 500px;
+  width: 40%;
   /* border: 5px solid black; */
   border-radius: 10px;
 
@@ -40,7 +48,8 @@ header {
 }
 
 .card:hover {
-  transform: scale(1.05);
+  /* transform: scale(1.05); */
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 20px 30px;
   z-index: 999;
 }
 .card:after {
@@ -49,7 +58,7 @@ header {
 .card:focus-within {
   justify-content: flex-start;
   align-items: flex-start;
-  width: 700px;
+  width: 80%;
 }
 
 .card-main {
@@ -68,8 +77,8 @@ header {
 .card-img {
   cursor: pointer;
   transition: 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
-  width: 80%;
-  height: auto;
+  /* width: 80%; */
+  /* height: auto; */
 }
 .card-img:hover {
   transform: scale(1.1);

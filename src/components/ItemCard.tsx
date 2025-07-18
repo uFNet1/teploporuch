@@ -40,30 +40,42 @@ export default function ItemCard({ name }) {
   const orderDetails = (
     <p className="order-text">
       Замовити на{" "}
-      <a className="order-link" href="https://www.instagram.com/teploporuch/">
+      <a
+        className="order-link"
+        href="https://www.instagram.com/teploporuch/"
+        target="_blank"
+      >
         @teploporuch
       </a>
     </p>
   );
   return (
-    <div
-      onTransitionCancel={handleTransitionCancel}
-      onTransitionEnd={handleTransitionEnd}
-      onFocus={handleOnFocus}
-      onBlur={handleOnBlur}
-      className="card"
-      tabIndex={0}
-    >
-      <div className="card-main">
-        <img className="card-img" height="420px" width="auto" src={candleImg} />
-        <p className="card-name">{name}</p>
-      </div>
-      {isFocused && isAllowedText ? (
-        <div className="card-main card-additional">
-          {description}
-          {orderDetails}
+    <>
+      <div
+        onTransitionCancel={handleTransitionCancel}
+        onTransitionEnd={handleTransitionEnd}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
+        className="card"
+        tabIndex={0}
+      >
+        <div className="card-main">
+          <img
+            className="card-img"
+            height="420px"
+            width="auto"
+            src={candleImg}
+          />
+          <p className="card-name">{name}</p>
         </div>
-      ) : null}
-    </div>
+        {isFocused && isAllowedText ? (
+          <div className="card-main card-additional">
+            {description}
+            {orderDetails}
+          </div>
+        ) : null}
+      </div>
+      <hr className="card-separator" />
+    </>
   );
 }
