@@ -1,0 +1,18 @@
+@media only screen and (min-width: 768px) {
+  /* tablets and desktop */
+}
+
+@media only screen and (max-width: 767px) {
+  /* phones */
+
+  .card {
+    width: 80%;
+  }
+  .card-name {
+    font-size: 1.35rem;
+  }
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  /* portrait phones */
+}

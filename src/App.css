@@ -57,10 +57,19 @@ header {
   flex-direction: column;
   align-items: center;
 }
-
+.card-additional {
+  display: none;
+  opacity: 0;
+}
+.card:focus-within .card-additional {
+  display: flex;
+  opacity: 1;
+}
 .card-img {
   cursor: pointer;
   transition: 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+  width: 80%;
+  height: auto;
 }
 .card-img:hover {
   transform: scale(1.1);
@@ -93,7 +102,7 @@ header {
   font-size: 1.5rem;
   font-weight: bold;
 }
-.order-text a {
+.order-link {
   text-decoration: none;
   transition: 0.2s;
   color: white;
@@ -108,7 +117,7 @@ header {
   );
   padding: 0.1rem;
 }
-.order-text a:hover {
+.order-link:hover {
   text-decoration: underline;
 }
 /* .logo {

@@ -9,14 +9,23 @@ export default function ItemCard({ name }) {
     setIsFocused(true);
   };
   const handleOnBlur = (event) => {
-    console.log(event.relatedTarget);
-    if (event.relatedTarget === null) setIsFocused(false);
+    if (
+      event.relatedTarget === null ||
+      event.relatedTarget.className !== "order-link"
+    ) {
+      setIsFocused(false);
+    }
   };
   const handleTransitionEnd = (event) => {
     if (event.propertyName === "width" && isFocused) {
       setIsAllowedText(true);
     } else if (event.propertyName === "width" && !isFocused) {
       setIsAllowedText(false);
+    }
+  };
+  const handleTransitionCancel = (event) => {
+    if (event.target.className === "card") {
+      // setIsAllowedText(false)
     }
   };
   const description = (
@@ -31,11 +40,14 @@ export default function ItemCard({ name }) {
   const orderDetails = (
     <p className="order-text">
       Замовити на{" "}
-      <a href="https://www.instagram.com/teploporuch/">@teploporuch</a>
+      <a className="order-link" href="https://www.instagram.com/teploporuch/">
+        @teploporuch
+      </a>
     </p>
   );
   return (
     <div
+      onTransitionCancel={handleTransitionCancel}
       onTransitionEnd={handleTransitionEnd}
       onFocus={handleOnFocus}
       onBlur={handleOnBlur}
@@ -47,7 +59,7 @@ export default function ItemCard({ name }) {
         <p className="card-name">{name}</p>
       </div>
       {isFocused && isAllowedText ? (
-        <div className="card-main">
+        <div className="card-main card-additional">
           {description}
           {orderDetails}
         </div>
