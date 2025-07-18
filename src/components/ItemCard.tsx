@@ -42,36 +42,16 @@ export default function ItemCard({ name }) {
       className="card"
       tabIndex={0}
     >
+      <div className="card-main">
+        <img className="card-img" height="420px" width="auto" src={candleImg} />
+        <p className="card-name">{name}</p>
+      </div>
       {isFocused && isAllowedText ? (
-        <>
-          <div className="card-main">
-            <img
-              className="card-img"
-              height="420px"
-              width="auto"
-              src={candleImg}
-            />
-            <p className="card-name">{name}</p>
-          </div>
-
-          <div className="card-main">
-            {description}
-            {orderDetails}
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="card-main">
-            <img
-              className="card-img"
-              height="420px"
-              width="auto"
-              src={candleImg}
-            />
-            <p className="card-name">{name}</p>
-          </div>
-        </>
-      )}
+        <div className="card-main">
+          {description}
+          {orderDetails}
+        </div>
+      ) : null}
     </div>
   );
 }
