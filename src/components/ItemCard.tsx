@@ -1,11 +1,8 @@
+import type { ItemCardProps } from "../types";
 import candleImg from "/candle.png";
-import { useState, useRef, type FC } from "react";
+import { useState, useRef, type FC, Fragment } from "react";
 
-interface ItemCardProps {
-  name: string;
-}
-
-const ItemCard: FC<ItemCardProps> = ({ name }) => {
+const ItemCard: FC<ItemCardProps> = ({ name, description, composition }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isAllowedText, setIsAllowedText] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -31,14 +28,30 @@ const ItemCard: FC<ItemCardProps> = ({ name }) => {
       setIsAllowedText(false);
     }
   };
-  const description = (
+  const descriptionComponent = (
     <p className="card-description">
-      "Ванільний гоголь-моголь" — це тепла обійми спогадів у кожному вдиху.
-      М’який аромат домашнього гоголь-моголю, збитого з любов’ю, наповнений
-      вершковими нотами ванілі, щіпкою мускатного горіха та легким карамельним
-      шлейфом. Він нагадує дитинство, коли морозні вечори пахли затишком, а мама
-      в кухні тихо збивала щось солодке.
+      {description.split("\n").map((line, index) => (
+        <Fragment key={index}>
+          {line}
+          <br />
+          <br />
+        </Fragment>
+      ))}
     </p>
+  );
+  const compositionComponent = (
+    <ul className="card-description composition">
+      {composition.split("\n").map((line, index) =>
+        index !== 0 ? (
+          <li key={index}>
+            {line}
+            <br />
+          </li>
+        ) : (
+          <b key={index}>{line}</b>
+        )
+      )}
+    </ul>
   );
   const orderDetails = (
     <p className="order-text">
@@ -73,7 +86,8 @@ const ItemCard: FC<ItemCardProps> = ({ name }) => {
         </div>
         {isFocused && isAllowedText ? (
           <div className="card-main card-additional">
-            {description}
+            {descriptionComponent}
+            {compositionComponent}
             {orderDetails}
           </div>
         ) : null}
