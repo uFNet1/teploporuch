@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 #root {
   width: 100%;
   text-align: center;
@@ -6,6 +9,22 @@ header {
   background-color: #ffffff;
   box-shadow: -2px 0px 14px 0px #80808052;
   margin-bottom: 5rem;
+}
+footer {
+  display: flex;
+  background-color: #ffffff;
+  box-shadow: -2px 0px 14px 0px #80808052;
+  margin-top: 5rem;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+footer a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.15rem;
 }
 .header-bottom {
   background-color: #efefef;

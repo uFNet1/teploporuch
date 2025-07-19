@@ -1,14 +1,18 @@
 import candleImg from "/candle.png";
-import { useState, type BaseSyntheticEvent, type SyntheticEvent } from "react";
+import { useState, type FC } from "react";
 
-export default function ItemCard({ name }) {
+interface ItemCardProps {
+  name: string;
+}
+
+const ItemCard: FC<ItemCardProps> = ({ name }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isAllowedText, setIsAllowedText] = useState(false);
 
   const handleOnFocus = () => {
     setIsFocused(true);
   };
-  const handleOnBlur = (event) => {
+  const handleOnBlur = (event: React.FocusEvent<HTMLElement>) => {
     if (
       event.relatedTarget === null ||
       event.relatedTarget.className !== "order-link"
@@ -16,16 +20,13 @@ export default function ItemCard({ name }) {
       setIsFocused(false);
     }
   };
-  const handleTransitionEnd = (event) => {
+  const handleTransitionEnd = (
+    event: React.TransitionEvent<HTMLDivElement>
+  ) => {
     if (event.propertyName === "width" && isFocused) {
       setIsAllowedText(true);
     } else if (event.propertyName === "width" && !isFocused) {
       setIsAllowedText(false);
-    }
-  };
-  const handleTransitionCancel = (event) => {
-    if (event.target.className === "card") {
-      // setIsAllowedText(false)
     }
   };
   const description = (
@@ -52,7 +53,6 @@ export default function ItemCard({ name }) {
   return (
     <>
       <div
-        onTransitionCancel={handleTransitionCancel}
         onTransitionEnd={handleTransitionEnd}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
@@ -78,4 +78,6 @@ export default function ItemCard({ name }) {
       <hr className="card-separator" />
     </>
   );
-}
+};
+
+export default ItemCard;
