@@ -4,6 +4,11 @@ html {
 #root {
   width: 100%;
   text-align: center;
+  background-image: url("pattern.png");
+  background-repeat: repeat;
+  background-size: 92px 92px; /* control spacing */
+  background-position: center;
+  background-attachment: fixed;
 }
 header {
   background-color: #ffffff;
@@ -53,6 +58,7 @@ footer a {
   border-radius: 30px;
 }
 .card {
+  scroll-margin-top: 20px;
   width: 40%;
   /* border: 5px solid black; */
   border-radius: 10px;
@@ -64,6 +70,7 @@ footer a {
   transition: 0.3s ease-in-out;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  background-color: white;
 }
 
 .card:hover {

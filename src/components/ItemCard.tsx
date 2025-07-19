@@ -1,5 +1,5 @@
 import candleImg from "/candle.png";
-import { useState, type FC } from "react";
+import { useState, useRef, type FC } from "react";
 
 interface ItemCardProps {
   name: string;
@@ -8,6 +8,7 @@ interface ItemCardProps {
 const ItemCard: FC<ItemCardProps> = ({ name }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isAllowedText, setIsAllowedText] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const handleOnFocus = () => {
     setIsFocused(true);
@@ -25,6 +26,7 @@ const ItemCard: FC<ItemCardProps> = ({ name }) => {
   ) => {
     if (event.propertyName === "width" && isFocused) {
       setIsAllowedText(true);
+      cardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     } else if (event.propertyName === "width" && !isFocused) {
       setIsAllowedText(false);
     }
@@ -58,6 +60,7 @@ const ItemCard: FC<ItemCardProps> = ({ name }) => {
         onBlur={handleOnBlur}
         className="card"
         tabIndex={0}
+        ref={cardRef}
       >
         <div className="card-main">
           <img
